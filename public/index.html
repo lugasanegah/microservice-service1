@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESI Checker</title>
+</head>
+<body>
+    <h1>RESI Checker</h1>
+    
+    <form id="jneForm">
+        <button type="button" onclick="checkResi('JNE')">CEK RESI JNE</button>
+    </form>
+
+    <form id="jntForm">
+        <button type="button" onclick="checkResi('JNT')">CEK RESI JNT</button>
+    </form>
+
+    <script>
+        async function checkResi(service) {
+            try {
+                const response = await fetch(`http://localhost:300${service === 'JNE' ? '1' : '2'}`);
+                const data = await response.text();
+                alert(`Response from ${service} service: ${data}`);
+            } catch (error) {
+                console.error(`Error checking ${service} RESI:`, error.message);
+            }
+        }
+    </script>
+</body>
+</html>
